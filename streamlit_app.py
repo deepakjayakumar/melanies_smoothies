@@ -29,7 +29,8 @@ order_name = st.text_input('Name of the Smoothie');
 st.write('The name of your smoothie is ' + order_name)
 time_to_insert = st.button('Submit',)
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-st.text(smoothiefroot_response.json())
+# st.text(smoothiefroot_response.json())
+sf_df = st.dataframe(data = smoothiefroot_response.json(),use_container_width = True)
 if(ingredients_list):
     st.write(ingredients_list)
     st.text(ingredients_list)
