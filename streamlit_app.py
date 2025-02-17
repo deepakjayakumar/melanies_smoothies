@@ -29,9 +29,9 @@ order_name = st.text_input('Name of the Smoothie');
 st.write('The name of your smoothie is ' + order_name)
 time_to_insert = st.button('Submit',)
 
-if(ingredients_list):
-    st.write(ingredients_list)
-    st.text(ingredients_list)
+# if(ingredients_list):
+#    st.write(ingredients_list)
+#    st.text(ingredients_list)
 
 ingredients_string = ''
 
