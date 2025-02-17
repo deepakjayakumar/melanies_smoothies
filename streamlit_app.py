@@ -25,8 +25,8 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col('SEARC
 
 # Convert teh snowpark dataframe to pandas dataframe so we can use the LOC function
 pd_df = my_dataframe.to_pandas()
-st.dataframe(pd_df)
-st.stop()
+# st.dataframe(pd_df)
+# st.stop()
 
 ingredients_list = st.multiselect('choose upto 5 ingredients', my_dataframe,max_selections=5)
 order_name = st.text_input('Name of the Smoothie');
@@ -41,6 +41,10 @@ ingredients_string = ''
 
 for fruits_chosen in ingredients_list:
     ingredients_string += ' ' +  fruits_chosen
+
+    search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
+    st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
+
     st.subheader(fruits_chosen + "Nutrition Information")
     smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+fruits_chosen)
     sf_df = st.dataframe(data = smoothiefroot_response.json(),use_container_width = True)
